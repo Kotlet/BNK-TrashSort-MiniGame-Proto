@@ -2,7 +2,6 @@
 --CONFIG
 
 Gamestate = require("gamestate");
-require("writing");
 
 menu 			= {}
 game_walking 	= {}

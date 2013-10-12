@@ -43,7 +43,7 @@ function game_walking:enter()
 end
 
 function game_walking:keypressed(key, code)
-    if key == 's' then
+    if key == KEY_ACTION then
         animate(object);
     end
 end

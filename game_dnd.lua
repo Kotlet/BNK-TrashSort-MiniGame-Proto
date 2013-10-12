@@ -44,7 +44,7 @@ function game_dnd:enter()
 end
 
 function game_dnd:keypressed(key, code)
-    if key == 's' then
+    if key == KEY_ACTION then
         animate(object);
     end
 end
