@@ -19,6 +19,10 @@ interpolator_accelerate = function(x)
 	return x * x;
 end
 
+interpolator_random = function(x)
+	return math.random();
+end
+
 ------------------------------------------------------------------------------
 --ANIMATION
 
@@ -43,7 +47,8 @@ function Anim.new(dur)
   self.transX 	= 0;
   self.transY 	= 0;
   self.interp 	= interpolator_linear;
-  self.color	= {255,255,255,255};
+  self.color		= nil;
+  self.startColor 	= nil;
   return self
 end
 
@@ -73,6 +78,29 @@ function Anim:update (dt, go)
 	go.rotation = go.rotation + ti * self.rotation;
 	go.scalex = go.scalex + ti * self.scaleX;
 	go.scaley = go.scaley + ti * self.scaleY;
+
+
+	local delta_color = {
+		self.startColor[1] - self.color[1];
+		self.startColor[2] - self.color[2];
+		self.startColor[3] - self.color[3];
+		self.startColor[4] - self.color[4];
+	}
+	go.color = {
+		go.color[1] - delta_color[1] * ti;
+		go.color[2] - delta_color[2] * ti;
+		go.color[3] - delta_color[3] * ti;
+		go.color[4] - delta_color[4] * ti;
+	}
+end
+
+function Anim:attachTo (go)
+	if self.color == nil then
+		self.color = go.color;
+	end
+	if self.startColor == nil then
+		self.startColor = go.color;
+	end
 end
 
 ------------------------------------------------------------------------------
@@ -114,6 +142,7 @@ function GameObject:draw()
 end
 
 function GameObject:addAnim(animation)
+	animation:attachTo(self);
 	table.insert(self.animations,1,animation);
 end
 

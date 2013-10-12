@@ -31,6 +31,12 @@ local animate = function(go)
     oasy.interp = interpolator_accelerate;
     go:addAnim(oasy);
     oasy:start();
+
+    local ac    = Anim(5.7);
+    ac.color    = RGBA(128,0,255,255);
+    ac.interp   = interpolator_linear;
+    go:addAnim(ac);
+    ac:start();
 end
 
 function game_walking:enter()
@@ -39,7 +45,7 @@ function game_walking:enter()
     deltaUpdate         = 0.3;
     width               = love.graphics.getWidth();
     height              = love.graphics.getHeight();
-    object.color        = RGBA(255,0,0);
+    object.color        = RGBA(255,255,255);
 end
 
 function game_walking:keypressed(key, code)

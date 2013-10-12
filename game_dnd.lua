@@ -34,7 +34,6 @@ local animate = function(go)
 end
 
 function game_dnd:enter()
-    love.graphics.setColor(255,0,255);
     object              = GameObject("TrashCan_generic.png");
     object.color        = RGBA(0,0,255);
     time                = 0;
@@ -44,7 +43,7 @@ function game_dnd:enter()
 end
 
 function game_dnd:keypressed(key, code)
-    if key == KEY_ACTION then
+    if key == KEY_ACTION  then
         animate(object);
     end
 end
