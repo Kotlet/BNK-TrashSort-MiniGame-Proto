@@ -49,11 +49,18 @@ function Anim.new(dur)
   self.interp 	= interpolator_linear;
   self.color		= nil;
   self.startColor 	= nil;
+  self.deltaColor   = nil;
   return self
 end
 
 function Anim:start()
 	self.started = true;
+	self.delta_color = {
+		self.startColor[1] - self.color[1];
+		self.startColor[2] - self.color[2];
+		self.startColor[3] - self.color[3];
+		self.startColor[4] - self.color[4];
+	}
 end
 
 function Anim:update (dt, go)
@@ -78,14 +85,7 @@ function Anim:update (dt, go)
 	go.rotation = go.rotation + ti * self.rotation;
 	go.scalex = go.scalex + ti * self.scaleX;
 	go.scaley = go.scaley + ti * self.scaleY;
-
-
-	local delta_color = {
-		self.startColor[1] - self.color[1];
-		self.startColor[2] - self.color[2];
-		self.startColor[3] - self.color[3];
-		self.startColor[4] - self.color[4];
-	}
+	
 	go.color = {
 		go.color[1] - delta_color[1] * ti;
 		go.color[2] - delta_color[2] * ti;
