@@ -1,4 +1,4 @@
 BNK-TrashSort-MiniGame-Proto
 ============================
 
-TrashSort MiniGame (LUA + LOVE) prototype
+TrashSort MiniGame prototype (LUA + LOVE)
